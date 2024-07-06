@@ -86,17 +86,22 @@ function createAccount(accountNumber, initialBalance) {
     if (typeof amount !== "number") {
       throw new Error("Please provide amount has a number data type");
     }
-  
-    account.balance -= amount;
-    console.log(`
-      withdraw ${amount} into account ${account.id} 
-      and total balance is ${account.balance}
-      `);
+
+    if(amount <= account.balance){
+      account.balance -= amount;
+      console.log(`
+        withdraw ${amount} into account ${account.id} 
+        and total balance is ${account.balance}
+        `);
+    }else{
+      console.log(`Insufficient balance can't withdraw ${amount} from your balance ${account.balance}`)
+    }
   }
   
   withdraw(firstAccount, 50);
   withdraw(secondAccount, 500);
   withdraw(thirdAccount,500)
+  withdraw(thirdAccount,1400)
   
   /*
     To check account balance
